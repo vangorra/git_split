@@ -8,8 +8,9 @@
 
 # set the variables.
 SRC_REPO=$1
-SRC_DIR=$2
-OUTPUT_REPO=$3
+SRC_BRANCH=$2
+SRC_DIR=$3
+OUTPUT_REPO=$4
 TMP_DIR=$(mktemp -d)
 
 REPO_BASE=$TMP_DIR/repo_base;
@@ -23,10 +24,11 @@ function cleanup() {
 # show the usage of this application
 function usage() {
 	echo -e ""
-	echo -e "Usage: $0 <src_repo> <dir_path> <dest_repo>"
-	echo -e "\tsrc_repo  - The source repo to pull from."
-	echo -e "\tdir_path  - Path of the directory to split."
-	echo -e "\tdest_repo - The repo to push to."
+	echo -e "Usage: $0 <src_repo> <src_branch> <dir_path> <dest_repo>"
+	echo -e "\tsrc_repo   - The source repo to pull from."
+	echo -e "\tsrc_branch - The branch of the source repo to pull from."
+	echo -e "\tdir_path   - Path of the directory to split."
+	echo -e "\tdest_repo  - The repo to push to."
 	echo -e "Notes:"
 	echo -e "	This script will not make any modifications to your original repo."
 	echo -e "	If the dest repo specified in the map file doesn't exist, then this script will try to create it."
@@ -85,12 +87,13 @@ then
 fi
 
 cd $REPO_BASE
+git checkout $SRC_BRANCH
 
 # turn this repo into just the changes for the oldPath
-git filter-branch --prune-empty --subdirectory-filter $SRC_DIR master
+git filter-branch --prune-empty --subdirectory-filter $SRC_DIR $SRC_BRANCH
 
 # push those changes to the new repo
-git push $OUTPUT_REPO master
+git push $OUTPUT_REPO $SRC_BRANCH
 
 # cleanup temp files before exit
 cleanup
