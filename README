@@ -1,6 +1,6 @@
 Description:
 This script will take an existing directory in your git repository and turn that directory into an independent repository of its own. Along the way, it will presever all the change history.
-Inspiration for this script came from http://help.github.com/split-a-subpath-into-a-new-repo/. This script really just automates the process.
+Inspiration for this script came from https://help.github.com/articles/splitting-a-subfolder-out-into-a-new-repository/. This script really just automates the process.
 let me know if you find this script useful. I'm also totally open contributors.
 
 Installation:
