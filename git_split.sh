@@ -10,7 +10,7 @@
 SRC_REPO=$1
 SRC_DIR=$2
 OUTPUT_REPO=$3
-TMP_DIR=$(mktemp -d)
+TMP_DIR=$(mktemp -dt "git_split")
 
 REPO_BASE=$TMP_DIR/repo_base;
 REPO_TMP=$TMP_DIR/repo_tmp;
@@ -44,6 +44,11 @@ trap control_c SIGINT
 if [ $(echo " $*" | grep -ciE " [-]+(h|help)") -gt 0 ]
 then
 	cleanup
+	usage
+	exit
+fi
+
+if [[ -z "$SRC_REPO" ]] || [[ -z "$SRC_DIR" ]] || [[ -z "$OUTPUT_REPO" ]]; then
 	usage
 	exit
 fi
