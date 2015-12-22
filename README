@@ -7,8 +7,9 @@ Installation:
 Drop it into a appropriate bin directory. Or run it locally.
 
 Usage:
-./git_split.sh <src_repo> <dir_path> <dest_repo>
+Usage: $0 <src_repo> <src_branch> <dir_path> <dest_repo>
         src_repo  - The source repo to pull from.
+        src_branch - The branch of the source repo to pull from. (usually master)
         dir_path  - Path of the directory to split.
         dest_repo - The repo to push to.
 
