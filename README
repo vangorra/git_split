@@ -6,8 +6,7 @@ let me know if you find this script useful. I'm also totally open contributors.
 Installation:
 Drop it into a appropriate bin directory. Or run it locally.
 
-Usage:
-Usage: $0 <src_repo> <src_branch> <dir_path> <dest_repo>
+Usage: ./git_split.sh <src_repo> <src_branch> <dir_path> <dest_repo>
         src_repo  - The source repo to pull from.
         src_branch - The branch of the source repo to pull from. (usually master)
         dir_path  - Path of the directory to split.
