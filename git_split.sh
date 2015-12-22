@@ -8,10 +8,9 @@
 
 # set the variables.
 SRC_REPO=$1
-SRC_BRANCH=$2
-SRC_DIR=$3
-OUTPUT_REPO=$4
-TMP_DIR=$(mktemp -d)
+SRC_DIR=$2
+OUTPUT_REPO=$3
+TMP_DIR=$(mktemp -d git_split)
 
 REPO_BASE=$TMP_DIR/repo_base;
 REPO_TMP=$TMP_DIR/repo_tmp;
