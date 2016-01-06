@@ -1,4 +1,9 @@
-[![Build Status](https://travis-ci.org/vangorra/git_split.svg?branch=master)](https://travis-ci.org/vangorra/git_split)
+OS    | Build Status
+------|-----------
+Linux | [![Build Status](https://travis-ci.org/vangorra/git_split.svg?branch=master)](https://travis-ci.org/vangorra/git_split)
+OSX   | [![Build Status](https://travis-ci.org/vangorra/git_split.svg?branch=master)](https://travis-ci.org/vangorra/git_split)
+Windows | [![Build status](https://ci.appveyor.com/api/projects/status/0yt4c98hjpw02i61?svg=true)](https://ci.appveyor.com/project/vangorra/git-split)
+
 
 # git_split.sh
 
