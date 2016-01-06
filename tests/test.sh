@@ -122,6 +122,8 @@ expectSuccessfulExit
 
 cd "$DEST_DIR"
 echoAndRun git checkout "SourceBranch1"
+
+echo "Checking the files were copied over properly."
 expectSuccessfulExit
 
 expectFileContains "$DEST_DIR/FILE1-0.txt" "1/FILE1-0.txt"
@@ -155,5 +157,6 @@ expectFileContains "$DEST_DIR/1-2/FILE1-2-3.txt" "1/1-2/FILE1-2-3.txt"
 expectFileContains "$DEST_DIR/1-2/FILE1-2-4.txt" "1/1-2/FILE1-2-4.txt"
 expectFileContains "$DEST_DIR/1-2/FILE1-2-5.txt" "1/1-2/FILE1-2-5.txt"
 
+echo "Assertions ran successfully."
 cleanup
 exit 0
