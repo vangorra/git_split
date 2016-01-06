@@ -7,4 +7,4 @@ install:
   - "sudo apt-get install git"
 
 script:
-  - "test/test.sh"
+  - "tests/test.sh"
