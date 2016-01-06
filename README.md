@@ -52,9 +52,9 @@ So you've been using git and storing multiple projects in the same repo. You rep
 * You can copy more than 1 branch into a destination directory by running it multiple times.
 
 ## Compatibility
-* Linux (Ubuntu confirmed)
-* OSX (confirmed)
-* Windows (haven't tested, but will probably work with cygwin)
+* Linux
+* OSX
+* Windows (with cygwin)
 
 ## Requirements
 * git
