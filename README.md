@@ -2,16 +2,13 @@
 
 # git_split.sh
 
-## Description:
-This script will take an existing directory in your git repository and turn that directory into an independent repository of its own. Along the way, it will presever all the change history.
-Inspiration for this script came from https://help.github.com/articles/splitting-a-subfolder-out-into-a-new-repository/. This script really just automates the process.
-let me know if you find this script useful. I'm also totally open contributors.
+This script will take an existing directory in your git repository and turn that directory into an independent repository of its own. Along the way, it will copy over the entire change history for the directory you provided.
+Inspiration for this script came from https://help.github.com/articles/splitting-a-subfolder-out-into-a-new-repository/. This script really just automates the process. Let me know if you find this script useful. I'm also totally open contributors.
 
-Installation:
+## Installation
 Drop it into a appropriate bin directory. Or run it locally.
 
-
-## Usage: 
+## Usage
 ```
 ./git_split.sh <src_repo> <src_branch> <relative_dir_path> <dest_repo>
         src_repo  - The source repo to pull from.
@@ -20,15 +17,40 @@ Drop it into a appropriate bin directory. Or run it locally.
         dest_repo - The repo to push to.
 ```
 
-## Notes:
-* This script will not make any modifications to your original repo.
-* If the dest repo specified in the map file doesn't exist, then this script will try to create it.
+## Examples
+So you've been using git and storing multiple projects in the same repo. You repo looks something like this.
+* myrepo
+  * /ProjectA
+    * Makefile
+    * README
+    * src
+      * file1
+      * file2
+  * /ProjectB
+    * Makefile
+    * README
+    * src
+      * fileA
+      * fileB
 
-## Compatibility:
-* Linux (Ubuntu so far)
-* OSX (haven't tested it)
+### Copy over the master branch.
+``` sh
+> mkdir ProjectARepo
+> git init ProjectARepo
+
+# copy over the master branch
+> ./git_split myrepo master ProjectA ProjectARepo
+```
+
+## Notes
+* git_split does not make any modifications to your original repo. It simply copies the history from one repo to another.
+* You can copy more than 1 branch into a destination directory by running it multiple times.
+
+## Compatibility
+* Linux (Ubuntu confirmed)
+* OSX (confirmed)
 * Windows (haven't tested, but will probably work with cygwin)
 
-## Requirements:
+## Requirements
 * git
 * standard *nix commands
