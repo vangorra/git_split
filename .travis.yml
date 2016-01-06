@@ -1,5 +1,8 @@
-# The language specific base vm to use for this repository
 language: bash
+
+os:
+   - linux
+   - osx
 
 sudo: required
 
