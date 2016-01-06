@@ -5,8 +5,8 @@ sudo: required
 
 install:
 	- "sudo apt-get install git"
-	- "git config --global user.email \"myemail@testplace.com\""
-	- "git config --global user.name \"Test User\""
+	- "git config --global user.email 'myemail@testplace.com'"
+	- "git config --global user.name 'Test User'"
 
 script:
 	- "tests/test.sh"

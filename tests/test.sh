@@ -47,6 +47,15 @@ function expectFileContains() {
 	fi
 }
 
+function expectSuccessfulExit() {
+	if [[ "$?" != "0" ]] ; then
+		echo "The last command finished with exit code '$?'";
+		cleanup
+		exit 1
+	fi
+}
+
+function echoAndRun() { echo ""; echo "> $@"; "$@" ; }
 
 SELF_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TMP_DIR=$(mktemp -d --tmpdir git_split_test.XXXXXX)
@@ -83,24 +92,33 @@ done
 # create the source repo.
 echo "Creating source git repo."
 cd "$SOURCE_DIR"
-git init
-git add .
-git commit -m "Initial commit"
-git checkout -b "SourceBranch1"
+echoAndRun git init
+expectSuccessfulExit
+echoAndRun git add .
+expectSuccessfulExit
+echoAndRun git commit -m "Initial commit"
+expectSuccessfulExit
+echoAndRun git checkout -b "SourceBranch1"
+expectSuccessfulExit
 
 # make the dest repo
 echo "Creating dest git repo."
-mkdir -p "$DEST_DIR"
-cd "$DEST_DIR"
-git init
+echoAndRun mkdir -p "$DEST_DIR"
+expectSuccessfulExit
+echoAndRun cd "$DEST_DIR"
+expectSuccessfulExit
+echoAndRun git init
+expectSuccessfulExit
 
 # run git split.
 echo ""
 echo "Running..."
-"$GIT_SPLIT_PATH" "$SOURCE_DIR" "SourceBranch1" "1" "$DEST_DIR"
+echoAndRun "$GIT_SPLIT_PATH" "$SOURCE_DIR" "SourceBranch1" "1" "$DEST_DIR"
+expectSuccessfulExit
 
 cd "$DEST_DIR"
-git checkout "SourceBranch1"
+echoAndRun git checkout "SourceBranch1"
+expectSuccessfulExit
 
 expectFileContains "$DEST_DIR/FILE1-0.txt" "1/FILE1-0.txt"
 expectFileContains "$DEST_DIR/FILE1-1.txt" "1/FILE1-1.txt"
