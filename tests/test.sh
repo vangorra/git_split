@@ -156,3 +156,4 @@ expectFileContains "$DEST_DIR/1-2/FILE1-2-4.txt" "1/1-2/FILE1-2-4.txt"
 expectFileContains "$DEST_DIR/1-2/FILE1-2-5.txt" "1/1-2/FILE1-2-5.txt"
 
 cleanup
+exit 0
