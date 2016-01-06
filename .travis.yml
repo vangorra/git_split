@@ -4,7 +4,9 @@ language: bash
 sudo: required
 
 install:
-  - "sudo apt-get install git"
+	- "sudo apt-get install git"
+	- "git config --global user.email \"myemail@testplace.com\""
+	- "git config --global user.name \"Test User\""
 
 script:
-  - "tests/test.sh"
+	- "tests/test.sh"
