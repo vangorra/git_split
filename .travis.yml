@@ -1,0 +1,10 @@
+# The language specific base vm to use for this repository
+language: bash
+
+sudo: required
+
+install:
+  - "sudo apt-get install git"
+
+script:
+  - "test/test.sh"
