@@ -20,15 +20,15 @@ Drop it into a appropriate bin directory. Or run it locally.
         dest_repo - The repo to push to.
 ```
 
-Notes:
+## Notes:
 * This script will not make any modifications to your original repo.
 * If the dest repo specified in the map file doesn't exist, then this script will try to create it.
 
-Compatibility:
+## Compatibility:
 * Linux (Ubuntu so far)
 * OSX (haven't tested it)
 * Windows (haven't tested, but will probably work with cygwin)
 
-Requirements:
+## Requirements:
 * git
 * standard *nix commands
