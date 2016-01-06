@@ -58,8 +58,12 @@ function expectSuccessfulExit() {
 function echoAndRun() { echo ""; echo "> $@"; "$@" ; }
 
 SELF_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-TMP_DIR=$(mktemp -d --tmpdir git_split_test.XXXXXX)
+
+TMP_DIR=$(mktemp -d /tmp/git_split_test.XXXXXX)
+expectSuccessfulExit
+
 GIT_SPLIT_PATH="$SELF_DIR/../git_split.sh"
+
 
 echo "Using tmp dir: $TMP_DIR"
 

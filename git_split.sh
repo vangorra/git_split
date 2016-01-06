@@ -11,7 +11,7 @@ SRC_REPO=$1
 SRC_BRANCH=$2
 SRC_DIR=$3
 OUTPUT_REPO=$4
-TMP_DIR=$(mktemp -d --tmpdir git_split.XXXXXX)
+TMP_DIR=$(mktemp -d /tmp/git_split.XXXXXX)
 
 REPO_BASE=$TMP_DIR/repo_base;
 REPO_TMP=$TMP_DIR/repo_tmp;
@@ -24,10 +24,10 @@ function cleanup() {
 # show the usage of this application
 function usage() {
 	echo -e ""
-	echo -e "Usage: $0 <src_repo> <src_branch> <dir_path> <dest_repo>"
+	echo -e "Usage: $0 <src_repo> <src_branch> <relative_dir_path> <dest_repo>"
 	echo -e "\tsrc_repo   - The source repo to pull from."
 	echo -e "\tsrc_branch - The branch of the source repo to pull from."
-	echo -e "\tdir_path   - Relative path of the directory in the source repo to split."
+	echo -e "\trelative_dir_path   - Relative path of the directory in the source repo to split."
 	echo -e "\tdest_repo  - The repo to push to."
 	echo -e "Notes:"
 	echo -e "	This script will not make any modifications to your original repo."
