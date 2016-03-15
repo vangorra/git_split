@@ -12,6 +12,13 @@ SRC_BRANCH=$2
 SRC_DIR=$3
 OUTPUT_REPO=$4
 TMP_DIR=$(mktemp -d /tmp/git_split.XXXXXX)
+SELF_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Normalize the output repo path.
+if [[ "$OUTPUT_REPO" != /* ]]; then
+	echo "IS RELATIVE!!"
+	OUTPUT_REPO="$( cd "$SELF_DIR/$OUTPUT_REPO" && pwd )"
+fi
 
 REPO_BASE=$TMP_DIR/repo_base;
 REPO_TMP=$TMP_DIR/repo_tmp;
