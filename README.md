@@ -4,6 +4,7 @@ Linux | [![Build Status](https://travis-ci.org/vangorra/git_split.svg?branch=mas
 OSX   | [![Build Status](https://travis-ci.org/vangorra/git_split.svg?branch=master)](https://travis-ci.org/vangorra/git_split)
 Windows | [![Build status](https://ci.appveyor.com/api/projects/status/0yt4c98hjpw02i61?svg=true)](https://ci.appveyor.com/project/vangorra/git-split)
 
+![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 # git_split.sh
 
