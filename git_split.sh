@@ -74,14 +74,6 @@ then
 	exit 1
 fi
 
-# if the source dir doesn't exist then exit
-if [ ! -e "$REPO_BASE/$SRC_DIR" -o ! -d "$REPO_BASE/$SRC_DIR" ]
-then
-	cleanup
-	echo "$REPO_BASE/$SRC_DIR doesn't exist or is not a directory."
-	exit 1
-fi 
-
 echo "Creating Repo from $SRC_REPO $SRC_DIR for $OUTPUT_REPO"
 
 # create the repo if it doesn't exist.
@@ -101,11 +93,27 @@ fi
 cd $REPO_BASE
 git checkout $SRC_BRANCH
 
+# if the source dir doesn't exist then exit
+# check after checkout of branch in cases where SRC_DIR only exists on branch
+if [ ! -e "$REPO_BASE/$SRC_DIR" -o ! -d "$REPO_BASE/$SRC_DIR" ]
+then
+	cleanup
+	echo "$REPO_BASE/$SRC_DIR doesn't exist or is not a directory."
+	exit 1
+fi 
+
 # turn this repo into just the changes for the oldPath
 git filter-branch --prune-empty --subdirectory-filter $SRC_DIR $SRC_BRANCH
 
 # push those changes to the new repo
 git push $OUTPUT_REPO $SRC_BRANCH
+
+# switched context of new repo to branch.  (output would default to master otherwise)
+cd $OUTPUT_REPO
+git checkout $SRC_BRANCH
+
+# user still needs to push to remote to share the merged code
+echo "run 'git push origin $SRC_BRANCH' to push the changes to the remote repository" 
 
 # cleanup temp files before exit
 cleanup
