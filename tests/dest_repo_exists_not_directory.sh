@@ -11,10 +11,10 @@ DEST_REPO="$TEMP_DIR/destRepo"
 
 initTestSourceRepo "$TEMP_DIR/sourceRepo"
 
-mkdir -p "$DEST_REPO"
+touch "$DEST_REPO"
 
 # run
 echoAndRun "$GIT_SPLIT_PATH" "$SOURCE_DIR" "SourceBranch1" "1" "$DEST_REPO"
-expectExitCode 11
+expectExitCode 10
 
 cleanup

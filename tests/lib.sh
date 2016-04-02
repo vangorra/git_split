@@ -61,14 +61,21 @@ function expectFileContains() {
 export -f expectFileContains
 
 function expectSuccessfulExit() {
-	if [[ "$?" != "0" ]] ; then
-		echo "The last command finished with exit code '$?'";
+	expectExitCode 0
+}
+
+export -f expectSuccessfulExit
+
+function expectExitCode() {
+	LAST_CODE=$?
+	if [[ "$LAST_CODE" != "$1" ]] ; then
+		echo "The last command finished with exit code '$LAST_CODE', was expecting exit code '$1'.";
 		cleanup
 		exit 1
 	fi
 }
 
-export -f expectSuccessfulExit
+export -f expectExitCode
 
 function echoAndRun() { 
 	echo ""; echo "> $@"; "$@" ; 

@@ -12,7 +12,29 @@ DEST_REPO="$TEMP_DIR/destRepo"
 initTestSourceRepo "$TEMP_DIR/sourceRepo"
 
 # run
-echoAndRun "$GIT_SPLIT_PATH" "$SOURCE_DIR" "SourceBranch1" "1" "$DEST_DIR"
+echoAndRun "$GIT_SPLIT_PATH" "$SOURCE_DIR" "SourceBranch1" "1" "$DEST_REPO"
 expectSuccessfulExit
 
 # verify
+expectIsDirectory "$DEST_REPO/1-0"
+expectIsDirectory "$DEST_REPO/1-1"
+expectIsDirectory "$DEST_REPO/1-2"
+expectIsDirectory "$DEST_REPO/1-3"
+expectIsDirectory "$DEST_REPO/1-4"
+expectIsDirectory "$DEST_REPO/1-5"
+
+expectIsFile "$DEST_REPO/FILE1-0.txt"
+expectIsFile "$DEST_REPO/FILE1-1.txt"
+expectIsFile "$DEST_REPO/FILE1-2.txt"
+expectIsFile "$DEST_REPO/FILE1-3.txt"
+expectIsFile "$DEST_REPO/FILE1-4.txt"
+expectIsFile "$DEST_REPO/FILE1-5.txt"
+
+expectFileContains "$DEST_REPO/FILE1-0.txt" "1/FILE1-0.txt"
+expectFileContains "$DEST_REPO/FILE1-1.txt" "1/FILE1-1.txt"
+expectFileContains "$DEST_REPO/FILE1-2.txt" "1/FILE1-2.txt"
+expectFileContains "$DEST_REPO/FILE1-3.txt" "1/FILE1-3.txt"
+expectFileContains "$DEST_REPO/FILE1-4.txt" "1/FILE1-4.txt"
+expectFileContains "$DEST_REPO/FILE1-5.txt" "1/FILE1-5.txt"
+
+cleanup
