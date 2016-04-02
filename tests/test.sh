@@ -1,63 +1,8 @@
 #!/bin/bash
-
-function cleanup() {
-	echo "Cleaning up."
-	#rm -rf "$TMP_DIR"
-}
-
-function expectIsDirectory() {
-	expectExists "$1"
-
-	if [[ ! -d "$1" ]] ; then
-		echo "Expected '$1' to be a directory."
-		cleanup
-		exit 1
-	fi
-}
-
-function expectIsFile() {
-	expectExists "$1"
-
-	if [[ ! -f "$1" ]] ; then
-		echo "Expected '$1' to be a file."
-		cleanup
-		exit 1
-	fi
-}
-
-function expectExists() {
-	if [[ ! -e "$1" ]] ; then
-		echo "Expected '$1' to exist."
-		cleanup
-		exit 1
-	fi
-}
-
-
-function expectFileContains() {
-	FILE_PATH=$1
-	SEARCH_STR=$2
-
-	expectIsFile "$FILE_PATH"
-
-	if [[ $(grep -c "$SEARCH_STR" "$FILE_PATH") != "1" ]] ; then
-		echo "Expected '$FILE_PATH' to contain '$SEARCH_STR'. It really contains '"`cat "$FILE_PATH"`"'";
-		cleanup
-		exit 1
-	fi
-}
-
-function expectSuccessfulExit() {
-	if [[ "$?" != "0" ]] ; then
-		echo "The last command finished with exit code '$?'";
-		cleanup
-		exit 1
-	fi
-}
-
-function echoAndRun() { echo ""; echo "> $@"; "$@" ; }
-
 SELF_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#echo "$SELF_DIR/lib.sh"
+#exit;
+source "$SELF_DIR/lib.sh"
 
 TMP_DIR=$(mktemp -d /tmp/git_split_test.XXXXXX)
 expectSuccessfulExit
