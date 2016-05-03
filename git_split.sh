@@ -29,6 +29,13 @@ if [[ "$OUTPUT_REPO" != /* ]]; then
 	OUTPUT_REPO="$( cd "$CURRENT_DIR/$OUTPUT_REPO" && pwd )"
 fi
 
+IS_SRC_REMOTE=$(echo "$SRC_REPO" | grep -Ei '^([a-z0-9@]+):' | wc -l)
+if [[ "$IS_SRC_REMOTE" = "0" ]]; then
+	if [[ "$SRC_REPO" != /* ]]; then
+		SRC_REPO="$( cd "$CURRENT_DIR/$SRC_REPO" && pwd )"
+	fi
+fi
+
 REPO_BASE="$TMP_DIR/repo_base";
 REPO_TMP="$TMP_DIR/repo_tmp";
 BARE_REPO="$TMP_DIR/bare";

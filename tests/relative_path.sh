@@ -6,10 +6,12 @@ source "$SELF_DIR/lib.sh"
 
 GIT_SPLIT_PATH="$SELF_DIR/../git_split.sh"
 TEMP_DIR=$(makeTempDir)
-SOURCE_REPO="$TEMP_DIR/sourceRepo"
-DEST_REPO="$TEMP_DIR/destRepo"
 
-initTestSourceRepo "$TEMP_DIR/sourceRepo"
+cd "$TEMP_DIR"
+SOURCE_REPO="sourceRepo"
+DEST_REPO="destRepo"
+
+(initTestSourceRepo "sourceRepo")
 
 git init "$DEST_REPO"
 
