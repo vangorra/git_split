@@ -13,6 +13,7 @@ SRC_DIR="$3"
 OUTPUT_REPO="$4"
 TMP_DIR=$(mktemp -d /tmp/git_split.XXXXXX)
 SELF_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CURRENT_DIR="$(pwd)"
 
 EXIT_CODE_OUTPUT_REPO_NOT_DIRECTORY=10
 EXIT_CODE_OUTPUT_DIR_NOT_A_REPO=11
@@ -25,7 +26,14 @@ EXIT_CODE_FAILED_TO_PUSH_TO_OUTPUT_REPO=17
 
 # Normalize the output repo path.
 if [[ "$OUTPUT_REPO" != /* ]]; then
-	OUTPUT_REPO="$( cd "$SELF_DIR/$OUTPUT_REPO" && pwd )"
+	OUTPUT_REPO="$( cd "$CURRENT_DIR/$OUTPUT_REPO" && pwd )"
+fi
+
+IS_SRC_REMOTE=$(echo "$SRC_REPO" | grep -Ei '^([a-z0-9@]+):' | wc -l)
+if [[ "$IS_SRC_REMOTE" = "0" ]]; then
+	if [[ "$SRC_REPO" != /* ]]; then
+		SRC_REPO="$( cd "$CURRENT_DIR/$SRC_REPO" && pwd )"
+	fi
 fi
 
 REPO_BASE="$TMP_DIR/repo_base";
