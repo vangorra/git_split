@@ -12,7 +12,6 @@ SRC_BRANCH="$2"
 SRC_DIR="$3"
 OUTPUT_REPO="$4"
 TMP_DIR=$(mktemp -d /tmp/git_split.XXXXXX)
-SELF_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 CURRENT_DIR="$(pwd)"
 
 EXIT_CODE_OUTPUT_REPO_NOT_DIRECTORY=10
@@ -37,7 +36,6 @@ if [[ "$IS_SRC_REMOTE" = "0" ]]; then
 fi
 
 REPO_BASE="$TMP_DIR/repo_base";
-REPO_TMP="$TMP_DIR/repo_tmp";
 BARE_REPO="$TMP_DIR/bare";
 
 # function to cleanup with a message.
