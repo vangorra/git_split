@@ -12,7 +12,6 @@ SRC_BRANCH="$2"
 SRC_DIR="$3"
 OUTPUT_REPO="$4"
 TMP_DIR=$(mktemp -d /tmp/git_split.XXXXXX)
-SELF_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 CURRENT_DIR="$(pwd)"
 
 EXIT_CODE_OUTPUT_REPO_NOT_DIRECTORY=10
@@ -29,7 +28,7 @@ if [[ "$OUTPUT_REPO" != /* ]]; then
 	OUTPUT_REPO="$( cd "$CURRENT_DIR/$OUTPUT_REPO" && pwd )"
 fi
 
-IS_SRC_REMOTE=$(echo "$SRC_REPO" | grep -Ei '^([a-z0-9@]+):' | wc -l)
+IS_SRC_REMOTE=$(echo "$SRC_REPO" | grep -cEi '^([a-z0-9@]+):')
 if [[ "$IS_SRC_REMOTE" = "0" ]]; then
 	if [[ "$SRC_REPO" != /* ]]; then
 		SRC_REPO="$( cd "$CURRENT_DIR/$SRC_REPO" && pwd )"
@@ -37,7 +36,6 @@ if [[ "$IS_SRC_REMOTE" = "0" ]]; then
 fi
 
 REPO_BASE="$TMP_DIR/repo_base";
-REPO_TMP="$TMP_DIR/repo_tmp";
 BARE_REPO="$TMP_DIR/bare";
 
 # function to cleanup with a message.
@@ -48,7 +46,7 @@ function cleanup() {
 # show the usage of this application
 function usage() {
 	echo -e ""
-	echo -e "Usage: $0 <src_repo> <src_branch> <relative_dir_path> <dest_repo>"
+	echo -e "Usage: $(basename "${0}") <src_repo> <src_branch> <relative_dir_path> <dest_repo>"
 	echo -e "\tsrc_repo   - The source repo to pull from."
 	echo -e "\tsrc_branch - The branch of the source repo to pull from."
 	echo -e "\trelative_dir_path   - Relative path of the directory in the source repo to split."
