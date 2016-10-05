@@ -28,7 +28,7 @@ if [[ "$OUTPUT_REPO" != /* ]]; then
 	OUTPUT_REPO="$( cd "$CURRENT_DIR/$OUTPUT_REPO" && pwd )"
 fi
 
-IS_SRC_REMOTE=$(echo "$SRC_REPO" | grep -Ei '^([a-z0-9@]+):' | wc -l)
+IS_SRC_REMOTE=$(echo "$SRC_REPO" | grep -cEi '^([a-z0-9@]+):')
 if [[ "$IS_SRC_REMOTE" = "0" ]]; then
 	if [[ "$SRC_REPO" != /* ]]; then
 		SRC_REPO="$( cd "$CURRENT_DIR/$SRC_REPO" && pwd )"
