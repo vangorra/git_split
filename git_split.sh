@@ -46,7 +46,7 @@ function cleanup() {
 # show the usage of this application
 function usage() {
 	echo -e ""
-	echo -e "Usage: $0 <src_repo> <src_branch> <relative_dir_path> <dest_repo>"
+	echo -e "Usage: $(basename "${0}") <src_repo> <src_branch> <relative_dir_path> <dest_repo>"
 	echo -e "\tsrc_repo   - The source repo to pull from."
 	echo -e "\tsrc_branch - The branch of the source repo to pull from."
 	echo -e "\trelative_dir_path   - Relative path of the directory in the source repo to split."
